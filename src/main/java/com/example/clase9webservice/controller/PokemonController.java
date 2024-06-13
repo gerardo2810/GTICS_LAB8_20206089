@@ -4,6 +4,8 @@ import com.example.clase9webservice.entity.Pokemon;
 import com.example.clase9webservice.repository.PokemonRepository;
 import com.example.clase9webservice.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.configurationprocessor.json.JSONException;
+import org.springframework.boot.configurationprocessor.json.JSONObject;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
 
