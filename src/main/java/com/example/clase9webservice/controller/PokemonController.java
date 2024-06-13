@@ -18,10 +18,16 @@ public class PokemonController {
     private UserRepository userRepository;
 
     @GetMapping("/location/{pokemonName}")
-    public String getLocation(@PathVariable String pokemonName) {
+    public void getLocation(@PathVariable String pokemonName) throws JSONException {
+        String url = "https://pokeapi.co/api/v2/location-area/" + pokemonName ;
         RestTemplate restTemplate = new RestTemplate();
-        String url = "https://pokeapi.co/api/v2/pokemon/" + pokemonName + "/encounters";
-        return restTemplate.getForObject(url, String.class);
+        String jsonResponse = restTemplate.getForObject(url, String.class);
+        JSONObject responseJson = new JSONObject(jsonResponse);
+        String location = responseJson.getString("location");
+        JSONObject locationString = new JSONObject(location);
+        String locationName = locationString.getString("name");
+        System.out.println(locationName);
+        //return restTemplate.getForObject(url, String.class);
     }
 
     @GetMapping("/capture-method/{locationId}")
